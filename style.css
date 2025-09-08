@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gift-container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    cursor: crosshair;
+}
+
+#gift-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#wrapping-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+    touch-action: none;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.instructions {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 25px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    animation: pulse 2s infinite;
+}
+
+.instructions p {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .gift-container {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .instructions {
+        bottom: 20px;
+        padding: 12px 20px;
+    }
+    
+    .instructions p {
+        font-size: 14px;
+    }
+}
+
+/* Hide instructions after interaction starts */
+.instructions.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: all 0.5s ease;
+}
+
+/* Fade out animation for wrapping paper */
+.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
